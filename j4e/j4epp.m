@@ -269,21 +269,69 @@ MATRIZ=zeros(N,M);
 % el par�metro de la funci�n indica cuantas pulsaciones debemos realizar
 % antes de devolver el control con los datos de cada pulsaci�n.
 
-%[x,y,b]=ginput(1);
-
-MATRIZ = juegaMaquina(MATRIZ,M);
-          
-          
+[x,y,b]=ginput(1);
+        
 % Si se pulsa ESCAPE se acaba
 % 'while' permite realizar un bucle mientras no se haya pulsado 
 % la tecla ESCAPE, es necesario tener en cuenta que se puede salir
 % de un bucle while o for mediante la funci�n 'break'
 
-b=0;
 while b~=27  % 27 corresponde con el valor devuelto al pulsar ESCAPE          
   % Si ha pulsado bot�n izquierdo del rat�n
   
-  ganador=comprueba(MATRIZ);          
+  if (b==1)
+      % Aseguramos que se opta por una columna 
+      %  entre 1 y N.
+      indice=round(x);
+      % Los �ndices de las matrices comienzan en
+      % 1 y deben ser n�meros enteros y si est� fuera de los l�mites 
+      % asignamos el l�mite m�s cercano.
+      if indice<1
+        indice=1;
+      end
+      if indice>N
+        indice=N;
+      end
+      % Si esa columna est� completa producimos un 
+      % pitido para indicar que no es posible colocar
+      % en esa posici�n.
+      % Tenga en cuenta la forma de expresar 'diferente de ' que
+      % se realiza mediante el caracter '~'
+      if (MATRIZ(indice,M)~=0)
+          beep;
+      else
+          % La condici�n se puede completar con 'else'
+          % y el conjunto if-else debe acabar con end.
+          
+          % Recorremos la columna elegida desde la
+          % primera fila hasta encontrar el primer hueco
+          % para colocar la pieza que nos indican.
+          for m=1:M
+            if (MATRIZ(indice,m)==0)
+              plot(indice,m,'og','LineWidth',25);
+                
+              pause(0.1);
+              MATRIZ(indice,m)=-1;
+              % Una vez que se ha encontrado el hueco
+              % la funci�n break nos permite salir 
+              % del bucle for, mediante la funci�n 'break'.
+              break;
+            end
+          end
+        % Comprobamos si con esa juegada se ha ganado la partida.
+        % Para llamar a una funci�n escrita por nosotros en un fichero
+%         *.m se hace igual que si fuera una funci�n de MATLAB.
+%         escribiendo su nombre, pasando los par�metros necesarios e 
+%         igualando a los par�metros que devuelve esta funci�n.
+%         Esta funci�n estar� descrita en un fichero con su mismo nombre y 
+%         extensi�n .m
+        ganador=comprueba(MATRIZ);
+        %  Si no se ha ganado y hay m�s huecos el jugador autom�tico debe
+        %  realizar el siguiente movimiento que se realiza mediante la
+        %  llamada a otra funci�n indicando el tablero actual. 
+      end
+  end
+            
   if (ganador~=0)
             % Si se ha ganado alguno se sale
      break;
@@ -356,9 +404,8 @@ while b~=27  % 27 corresponde con el valor devuelto al pulsar ESCAPE
   else
       % Si quedan piezas por poner y no ha ganado ninguno, vuelve a jugar
       % el primer jugador
-      %[x,y,b]=ginput(1);
+      [x,y,b]=ginput(1);
       
-      MATRIZ = juegaMaquina(MATRIZ,M);
   end
 end
 hold off
