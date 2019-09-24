@@ -261,9 +261,6 @@ global MATRIZ % definimos esta variable como global
 % que se indiquen mediante 'global' que es una variable global
 MATRIZ=zeros(N,M);
 
-
-
-
 % Utilizamos la funci�n ginput para recoger 
 % la posici�n de la pulsaci�n del rat�n
 % el par�metro de la funci�n indica cuantas pulsaciones debemos realizar
@@ -303,28 +300,15 @@ while b~=27  % 27 corresponde con el valor devuelto al pulsar ESCAPE
           % La condici�n se puede completar con 'else'
           % y el conjunto if-else debe acabar con end.
           
-          % Recorremos la columna elegida desde la
-          % primera fila hasta encontrar el primer hueco
-          % para colocar la pieza que nos indican.
-          for m=1:M
-            if (MATRIZ(indice,m)==0)
-              plot(indice,m,'og','LineWidth',25);
-                
-              pause(0.1);
-              MATRIZ(indice,m)=-1;
-              % Una vez que se ha encontrado el hueco
-              % la funci�n break nos permite salir 
-              % del bucle for, mediante la funci�n 'break'.
-              break;
-            end
-          end
-        % Comprobamos si con esa juegada se ha ganado la partida.
-        % Para llamar a una funci�n escrita por nosotros en un fichero
-%         *.m se hace igual que si fuera una funci�n de MATLAB.
-%         escribiendo su nombre, pasando los par�metros necesarios e 
-%         igualando a los par�metros que devuelve esta funci�n.
-%         Esta funci�n estar� descrita en un fichero con su mismo nombre y 
-%         extensi�n .m
+          MATRIZ = juegaPersona(MATRIZ, 1, M, indice);
+          
+          % Comprobamos si con esa juegada se ha ganado la partida.
+          % Para llamar a una funci�n escrita por nosotros en un fichero
+          %         *.m se hace igual que si fuera una funci�n de MATLAB.
+          %         escribiendo su nombre, pasando los par�metros necesarios e
+          %         igualando a los par�metros que devuelve esta funci�n.
+          %         Esta funci�n estar� descrita en un fichero con su mismo nombre y
+          %         extensi�n .m
         ganador=comprueba(MATRIZ);
         %  Si no se ha ganado y hay m�s huecos el jugador autom�tico debe
         %  realizar el siguiente movimiento que se realiza mediante la
@@ -362,21 +346,8 @@ while b~=27  % 27 corresponde con el valor devuelto al pulsar ESCAPE
           % La condici�n se puede completar con 'else'
           % y el conjunto if-else debe acabar con end.
           
-          % Recorremos la columna elegida desde la
-          % primera fila hasta encontrar el primer hueco
-          % para colocar la pieza que nos indican.
-          for m=1:M
-            if (MATRIZ(indice,m)==0)
-              plot(indice,m,'or','LineWidth',25);
-                
-              pause(0.1);
-              MATRIZ(indice,m)=1;
-              % Una vez que se ha encontrado el hueco
-              % la funci�n break nos permite salir 
-              % del bucle for, mediante la funci�n 'break'.
-              break;
-            end
-          end
+          MATRIZ = juegaPersona(MATRIZ, 2, M, indice);
+          
         % Comprobamos si con esa juegada se ha ganado la partida.
         % Para llamar a una funci�n escrita por nosotros en un fichero
 %         *.m se hace igual que si fuera una funci�n de MATLAB.
