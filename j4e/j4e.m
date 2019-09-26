@@ -236,6 +236,7 @@ puntosx=puntosx(:);
 puntosx=puntosx';
 
 % De forma similar para obtener las otras coordenadas
+    %Vector columna de 1 a N, vector fila de 1 a M con 1, y los multiplica
 puntosy=((1:N)'*(ones(1,M)));
 puntosy=puntosy(:);
 puntosy=puntosy';
@@ -317,18 +318,9 @@ while b~=27  % 27 corresponde con el valor devuelto al pulsar ESCAPE
           % Recorremos la columna elegida desde la
           % primera fila hasta encontrar el primer hueco
           % para colocar la pieza que nos indican.
-          for m=1:M
-            if (MATRIZ(indice,m)==0)
-              plot(indice,m,'or','LineWidth',25);
-                
-              pause(0.1);
-              MATRIZ(indice,m)=1;
-              % Una vez que se ha encontrado el hueco
-              % la funci�n break nos permite salir 
-              % del bucle for, mediante la funci�n 'break'.
-              break;
-            end
-          end
+          
+          MATRIZ = juegaPersona(MATRIZ, 1, M, indice);
+          
         % Comprobamos si con esa juegada se ha ganado la partida.
         % Para llamar a una funci�n escrita por nosotros en un fichero
 %         *.m se hace igual que si fuera una funci�n de MATLAB.
