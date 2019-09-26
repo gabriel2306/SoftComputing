@@ -15,12 +15,12 @@ for n=1:20
   CARACTER_REPRESENTADO=num2str(data.y(n),'%c')
   INDICE=data.y(n)
   disp('Se utilizan los �ndices desde 48 para el ''0'' hasta el 90 para ''Z''');
-  pause;
+  %pause;
 end
 clc;
 
 % Ejecuci�n con 2 vecinos
-model=Train_kNN(data,9);
+model=Train_kNN(data,2);
 [ACC,CM,Labels]=Test_kNN(dataTest,model);
 Tasa_de_acierto=ACC
 indices_no_nulos=sum(CM);

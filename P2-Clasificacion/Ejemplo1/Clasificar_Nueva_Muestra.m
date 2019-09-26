@@ -1,6 +1,9 @@
 %function Clasificar_Nueva_Muestra(fichero)
 % fichero con data.X y data.y con los datos de entrenamiento
 function Clasificar_Nueva_Muestra(fichero)
+
+Nvecinos = 5;
+
 Boton=1;
 while(Boton==1)
     %Representar datos previos
@@ -17,13 +20,13 @@ while(Boton==1)
     distancia=sum(data.X.^2,1)'*ones(1,1)+ones(size(data.X,2),1)*sum(dataTest.X.^2,1)-2*data.X'*dataTest.X;
     [aux,aux2]=sort(distancia);
 
-    Vecinos=data.X(:,aux2(1:3));
+    Vecinos=data.X(:,aux2(1:Nvecinos));
     h=plot(Vecinos(1,:),Vecinos(2,:),'ks');
     set(h,'Markersize',8);
-    Clases_Vecinos=data.y(aux2(1:3));
+    Clases_Vecinos=data.y(aux2(1:Nvecinos));
     Numero_Clases=max(data.y);
     C=zeros(1,Numero_Clases);
-    for i=1:3
+    for i=1:Nvecinos
         C(Clases_Vecinos(i))=C(Clases_Vecinos(i))+1;
     end
     [Numero,Clase]=max(C);
