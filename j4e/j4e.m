@@ -1,3 +1,5 @@
+
+
 % Los programas en MATLAB se guardan con extensi�n *.m
 % y para ejecutarlos basta con llamar desde la 
 % l�nea de comandos al nombre sin la extensi�n *.m
@@ -319,7 +321,7 @@ while b~=27  % 27 corresponde con el valor devuelto al pulsar ESCAPE
           % primera fila hasta encontrar el primer hueco
           % para colocar la pieza que nos indican.
           
-          MATRIZ = juegaPersona(MATRIZ, 1, M, indice);
+          MATRIZ = juegaPersona(MATRIZ, 2, M, indice);
           
         % Comprobamos si con esa juegada se ha ganado la partida.
         % Para llamar a una funci�n escrita por nosotros en un fichero
