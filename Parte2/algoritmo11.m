@@ -4,9 +4,13 @@ function [soluciones,mejor] = algoritmo11(vector,gmax)
     mejor = minimoActual;
     soluciones = [];
     hijo = [];
+    varianza = 0.5;
+    
     for i=1:gmax
-        soluciones = [soluciones;minimoActual];
-        minimoHijo = funcion1(generarHijo(padre,0.5));
+        soluciones = [soluciones; minimoActual];
+        hijo = generarHijo(padre,varianza);
+        minimoHijo = funcion1(hijo);
+        
         if(minimoHijo<minimoActual)
             minimoActual = minimoHijo;
             mejor = minimoActual;
@@ -16,7 +20,6 @@ function [soluciones,mejor] = algoritmo11(vector,gmax)
 end
 
 function [hijo] = generarHijo(padre,varianza)
-    hijo = [];
     ruido = 0 + varianza*randn(1,30);
     hijo = padre + ruido;
 end
