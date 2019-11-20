@@ -6,7 +6,7 @@ for i=1:nVectores
 end
 
 maxGeneraciones = 10000;
-sigma = 1;
+sigma = 0.5;
 nFuncion = 1;
 [soluciones,mejor] = algoritmoHS(vectores,maxGeneraciones,nFuncion,sigma);
 
