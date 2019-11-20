@@ -2,7 +2,7 @@
 % fichero con data.X y data.y con los datos de entrenamiento
 function Clasificar_Nueva_Muestra(fichero)
 
-Nvecinos = 5;
+Nvecinos = 20;
 
 Boton=1;
 while(Boton==1)
@@ -24,7 +24,7 @@ while(Boton==1)
     h=plot(Vecinos(1,:),Vecinos(2,:),'ks');
     set(h,'Markersize',8);
     Clases_Vecinos=data.y(aux2(1:Nvecinos));
-    Numero_Clases=max(data.y);
+    Numero_Clases=max(data.y); 
     C=zeros(1,Numero_Clases);
     for i=1:Nvecinos
         C(Clases_Vecinos(i))=C(Clases_Vecinos(i))+1;
