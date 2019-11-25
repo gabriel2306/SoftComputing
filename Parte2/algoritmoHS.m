@@ -49,6 +49,9 @@ function [hijo] = generarHijoRSR(padres,varianza)
     tam = size(padres{1});
     tamColumnas = size(padres);
     tamColumnas = tamColumnas(2);
+    
+    [maximo,minimo] = calcularLimites(padres);
+    
     for i = 1:tam(2)
         prob = rand;
         if(prob<0.8)
@@ -56,7 +59,6 @@ function [hijo] = generarHijoRSR(padres,varianza)
             fila = padres{numAleatorioFila};
             valor = fila(i);           
         else
-            [maximo,minimo] = calcularLimites(padres);
             valor = rand*(maximo-minimo)+minimo;
         end
         if(prob<0.3)
@@ -68,13 +70,10 @@ function [hijo] = generarHijoRSR(padres,varianza)
     
     tamHijo = size(hijo);
     probCambio = rand;
-    if(probCambio<0.4)
+    if(probCambio<0.2)
         for i=1:randi(tamHijo(2))
-            aleatorioInicial = randi(tamHijo(2));
-            aleatorioFinal = randi(tamHijo(2));
-            aux = hijo(aleatorioInicial);
-            hijo(aleatorioInicial) = hijo(aleatorioFinal);
-            hijo(aleatorioFinal) = aux;
+            posicionAleatoria = randi(tamHijo(2));
+            hijo(posicionAleatoria) = rand*(maximo-minimo)+minimo;
         end
     end
 end
