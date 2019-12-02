@@ -1,20 +1,20 @@
-function [soluciones,mejor] = algoritmo11(vector,gmax,nFuncion,sigma)
+function [allFitness,iMejor,hijoMejor] = algoritmo11(vector,gmax,nFuncion,sigma)
     padre = vector;
     minimoActual = evaluarFuncion(padre,nFuncion);
     
-    mejor = minimoActual;
-    soluciones = [];
+    allFitness = [];
     varianza = sigma;
     
     for i=1:gmax
-        soluciones = [soluciones; minimoActual];
+        allFitness = [allFitness; minimoActual];
         hijo = generarHijo(padre,varianza);
         minimoHijo = evaluarFuncion(hijo,nFuncion);
         
         if(minimoHijo<minimoActual)
             minimoActual = minimoHijo;
-            mejor = minimoActual;
+            hijoMejor = hijo;
             padre = hijo;
+            iMejor=i;
         end
     end
 end

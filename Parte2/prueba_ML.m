@@ -9,9 +9,12 @@ maxGeneraciones = 10000;
 sigma = 0.5;
 nHijos = 10;
 nFuncion = 1;
-[soluciones,mejor] = algoritmoML(vectores,maxGeneraciones,nFuncion,sigma,nHijos);
+[allFitness,mejorFitness,solucion] = algoritmoML(vectores,maxGeneraciones,nFuncion,sigma,nHijos);
 
-plot(soluciones);
-mejorFitness = mejor;
+plot(allFitness);
 
+disp('Mejor fitness conseguido');
 disp(mejorFitness);
+
+disp('La solucion es');
+disp(solucion);

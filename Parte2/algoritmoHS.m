@@ -1,12 +1,12 @@
-function [soluciones,mejor] = algoritmoHS(vectores,gmax,nFuncion,sigma)
+function [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,gmax,nFuncion,sigma)
     padres = vectores;
     varianza = sigma;
     valoresPadres = evaluarAux(padres,nFuncion);
     minimoPadres = min(valoresPadres);
     mejor = minimoPadres;
-    soluciones = [];
+    allFitness = [];
     for j=1:gmax
-        soluciones = [soluciones; mejor];
+        allFitness = [allFitness; mejor];
         hijo = generarHijoRSR(padres,varianza);
         valorHijo = evaluarFuncion(hijo,nFuncion);
         
@@ -15,7 +15,8 @@ function [soluciones,mejor] = algoritmoHS(vectores,gmax,nFuncion,sigma)
             padres{padre} = hijo;
             valoresPadres = evaluarAux(padres,nFuncion);
             minimoPadres = min(valoresPadres);
-            mejor = minimoPadres;
+            mejorFitness = minimoPadres;
+            solucion = hijo;
         end
     end
 

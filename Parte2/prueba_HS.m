@@ -8,9 +8,12 @@ end
 maxGeneraciones = 10000;
 sigma = 0.5;
 nFuncion = 1;
-[soluciones,mejor] = algoritmoHS(vectores,maxGeneraciones,nFuncion,sigma);
+[allFitness,mejorFitness,solucion] = algoritmoHS(vectores,maxGeneraciones,nFuncion,sigma);
 
-plot(soluciones);
-mejorFitness = mejor;
+plot(allFitness);
 
+disp('Mejor fitness conseguido');
 disp(mejorFitness);
+
+disp('La solucion es');
+disp(solucion);

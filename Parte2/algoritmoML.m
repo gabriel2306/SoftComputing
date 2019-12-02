@@ -1,19 +1,19 @@
-function [soluciones,mejor] = algoritmoML(vectores,gmax,nFuncion,sigma,nHijos)
+function [allFitness,mejorFitness,solucion] = algoritmoML(vectores,gmax,nFuncion,sigma,nHijos)
     padres = vectores;
 
     valoresPadres = evaluarAux(padres,nFuncion);
     minimoPadres = min(valoresPadres);
    
-    mejor = minimoPadres;
-    soluciones = [];
+    allFitness = [];
     varianza = sigma;
     for j=1:gmax
-        soluciones = [soluciones;minimoPadres];
+        allFitness = [allFitness;minimoPadres];
         padres = obtenerNuevosPadres(padres,nHijos,varianza,nFuncion,valoresPadres);
         
         valoresPadres = evaluarAux(padres,nFuncion);
-        minimoPadres = min(valoresPadres);
-        mejor = minimoPadres;
+        [minimoPadres posicionMinimo] = min(valoresPadres);
+        mejorFitness = minimoPadres;
+        solucion = padres{posicionMinimo};
     end
 end
 
