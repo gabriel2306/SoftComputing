@@ -6,11 +6,11 @@ function [allFitness,fitness,hijoMejor] = algoritmo11(vector,gmax,nFuncion,sigma
     varianza = sigma;
     
     for i=1:gmax
-        allFitness = [allFitness; minimoActual];
-        hijo = generarHijo(padre,varianza);
-        minimoHijo = evaluarFuncion(hijo,nFuncion);
+        allFitness = [allFitness; minimoActual]; %Guardamos el fitness del padre
+        hijo = generarHijo(padre,varianza); %Geneamos hijo
+        minimoHijo = evaluarFuncion(hijo,nFuncion); %Generamos resultado de función a optimizar del hijo
         
-        if(minimoHijo<minimoActual)
+        if(minimoHijo<minimoActual) %Si el hijo es mejor que el padre, se sustituye
             minimoActual = minimoHijo;
             hijoMejor = hijo;
             padre = hijo;
@@ -19,11 +19,13 @@ function [allFitness,fitness,hijoMejor] = algoritmo11(vector,gmax,nFuncion,sigma
     end
 end
 
+%Generamos hijo con mutación gaussiana
 function [hijo] = generarHijo(padre,varianza)
     ruido = 0 + varianza*randn(1,30);
     hijo = padre + ruido;
 end
 
+%Generamos resultado de función objetivo del individuo
 function [eval] = evaluarFuncion(vector, nFuncion)
     aux = 0;
     switch nFuncion

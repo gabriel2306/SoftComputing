@@ -17,13 +17,11 @@ function [allFitness,mejorFitness,solucion] = algoritmoML(vectores,gmax,nFuncion
     end
 end
 
-%Genera hijo con mutación gaussiana
 function [hijo] = generarHijo(padre,varianza)
     ruido = 0 + varianza*randn(1,30);
     hijo = padre + ruido;
 end
 
-%Genera resultado de función objetivo de un individuo
 function [eval] = evaluarFuncion(vector, nFuncion)
     aux = 0;
     switch nFuncion
@@ -48,7 +46,7 @@ function [valores] = evaluarAux(padres,nFuncion)
     end
 end
 
-%Genera hijos de un padre
+%Generar hijos de un padre
 function [hijos] = generarHijosAux(padre,nHijos,varianza)
     hijos = cell(1,nHijos);
     for i=1:nHijos
@@ -59,10 +57,10 @@ end
 function [padres] = obtenerNuevosPadres(padres,nHijos,varianza,nFuncion,valoresPadres)
     nPadres = size(padres);
     for i = 1:nPadres(2)
-        hijos = generarHijosAux(padres{i},nHijos,varianza); %Generamos hijo de un padre
-        valoresHijos = evaluarAux(hijos,nFuncion); %Generamos los resultados de la función objetivo de los hijos
-        [valorHijoMinimo posicionHijoMinimo] = min(valoresHijos); %Valor minimo del hijo
-        if(valorHijoMinimo<valoresPadres(i))%Si el mejor hijo es mejor que el padre lo sustituimos
+        hijos = generarHijosAux(padres{i},nHijos,varianza);
+        valoresHijos = evaluarAux(hijos,nFuncion);
+        [valorHijoMinimo posicionHijoMinimo] = min(valoresHijos);
+        if(valorHijoMinimo<valoresPadres(i))
             padres{i} = hijos{posicionHijoMinimo};
         end
     end
