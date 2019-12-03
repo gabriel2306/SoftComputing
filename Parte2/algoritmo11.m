@@ -1,4 +1,4 @@
-function [allFitness,iMejor,hijoMejor] = algoritmo11(vector,gmax,nFuncion,sigma)
+function [allFitness,fitness,hijoMejor] = algoritmo11(vector,gmax,nFuncion,sigma)
     padre = vector;
     minimoActual = evaluarFuncion(padre,nFuncion);
     
@@ -14,7 +14,7 @@ function [allFitness,iMejor,hijoMejor] = algoritmo11(vector,gmax,nFuncion,sigma)
             minimoActual = minimoHijo;
             hijoMejor = hijo;
             padre = hijo;
-            iMejor=i;
+            fitness = minimoActual;
         end
     end
 end

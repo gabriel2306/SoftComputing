@@ -36,7 +36,7 @@ function [hijo] = generarHijoRSR(padres,varianza)
             fila = padres{numAleatorioFila};
             valor = fila(i);           
         else
-            valor = rand*(200)-100;
+            valor = rand*(maximo-minimo)+minimo;
         end
         if(prob<0.3)
             ruido = 0 + varianza*rand;
@@ -50,6 +50,7 @@ function [hijo] = generarHijoRSR(padres,varianza)
     if(probCambio<0.01)
         for i=1:randi(tamHijo(2))
             posicionAleatoria = randi(tamHijo(2));
+            [maximo,minimo] = calcularLimites(padres,posicionAleatoria);
             hijo(posicionAleatoria) = rand*(maximo-minimo)+minimo;
         end
     end
