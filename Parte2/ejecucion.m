@@ -1,5 +1,5 @@
 % Funcion a evaluar
-nFuncion = 1;
+nFuncion = 2;
 
 % Limites
 if (nFuncion==1)
@@ -18,13 +18,13 @@ if (nFuncion==3)
 end
 
 % Parametros
-sigma11 = 0.5;
+sigma11 = 5;
 maxGeneraciones11 = 10000;
 
-sigmaML = 0.5;
+sigmaML = 5;
 maxGeneracionesML = 10000;
 
-sigmaHS = 0.5;
+sigmaHS = 5;
 maxGeneracionesHS = 10000;
 
 % 1+1
@@ -35,7 +35,7 @@ bestFitness11 = mejorFitness;
 allFitness11 = allFitness;
 solucion11 = solucion;
 fitnessIteraciones11 = [mejorFitness];
-for i=1:30
+for i=1:5
     [allFitness,mejorFitness,solucion] = algoritmo11(vector,maxGeneraciones11,nFuncion,sigma11);
     fitnessIteraciones11 = [fitnessIteraciones11 mejorFitness];
     if (mejorFitness<bestFitness11)
@@ -46,9 +46,9 @@ for i=1:30
 end
 toc
 
-nVectores = 10;
+nVectores = 50;
 vectores = cell(1,nVectores);
-nHijos = 10;
+nHijos = 5;
 for i=1:nVectores
     vector = limiteInferior + (limiteSuperior-limiteInferior)*rand(1,30);
     vectores{i} = vector;
@@ -61,7 +61,7 @@ bestFitnessML = mejorFitness;
 allFitnessML = allFitness;
 solucionML = solucion;
 fitnessIteracionesML = [mejorFitness];
-for i=1:30
+for i=1:5
     [allFitness,mejorFitness,solucion] = algoritmoML(vectores,maxGeneracionesML,nFuncion,sigmaML,nHijos);
     fitnessIteracionesML = [fitnessIteracionesML mejorFitness];
     if (mejorFitness<bestFitnessML)
@@ -79,8 +79,8 @@ bestFitnessHS = mejorFitness;
 allFitnessHS = allFitness;
 solucionHS = solucion;
 fitnessIteracionesHS = [mejorFitness];
-for i=1:30
-    [allFitness,mejorFitness,solucion] = algoritmoML(vectores,maxGeneracionesHS,nFuncion,sigmaHS,nHijos);
+for i=1:5
+    [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,maxGeneracionesHS,nFuncion,sigmaHS);
     fitnessIteracionesHS = [fitnessIteracionesHS mejorFitness];
     if (mejorFitness<bestFitnessHS)
         bestFitnessHS = mejorFitness;

@@ -15,9 +15,9 @@ function [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,gmax,nFuncion
         if(valorPeorPadres>valorHijo)
             padres{padre} = hijo;
             valoresPadres = evaluarAux(padres,nFuncion);
-            minimoPadres = min(valoresPadres);
+            [minimoPadres,posMinimoPadres] = min(valoresPadres);
             mejorFitness = minimoPadres;
-            solucion = hijo;
+            solucion = padres{posMinimoPadres};
         end
     end
 
@@ -41,7 +41,7 @@ function [hijo] = generarHijoRSR(padres,varianza)
             valor = fila(i);           
         else
             %Nota aleatoria en el rango de la misma columna
-            valor = rand*(maximo-minimo)+minimo;
+            valor = minimo + (maximo-minimo)*rand;
         end
         %Probabilidad PAR
         if(prob<0.3)

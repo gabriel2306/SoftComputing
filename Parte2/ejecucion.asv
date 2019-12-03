@@ -1,14 +1,5 @@
+% Funcion a evaluar
 nFuncion = 1;
-
-% PA
-sigma11 = 0.5;
-maxGeneraciones11 = 10000;
-
-sigmaML = 0.5;
-maxGeneracionesML = 10000;
-
-sigmaHS = 0.5;
-maxGeneracionesHS = 10000;
 
 % Limites
 if (nFuncion==1)
@@ -25,6 +16,16 @@ if (nFuncion==3)
     limiteInferior = -30;
     limiteSuperior = 30;
 end
+
+% Parametros
+sigma11 = 0.5;
+maxGeneraciones11 = 10000;
+
+sigmaML = 0.5;
+maxGeneracionesML = 10000;
+
+sigmaHS = 0.005;
+maxGeneracionesHS = 10000;
 
 % 1+1
 vector = limiteInferior + (limiteSuperior-limiteInferior)*rand(1,30);
@@ -79,7 +80,7 @@ allFitnessHS = allFitness;
 solucionHS = solucion;
 fitnessIteracionesHS = [mejorFitness];
 for i=1:30
-    [allFitness,mejorFitness,solucion] = algoritmoML(vectores,maxGeneracionesHS,nFuncion,sigmaHS,nHijos);
+    [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,maxGeneracionesHS,nFuncion,sigmaHS);
     fitnessIteracionesHS = [fitnessIteracionesHS mejorFitness];
     if (mejorFitness<bestFitnessHS)
         bestFitnessHS = mejorFitness;
