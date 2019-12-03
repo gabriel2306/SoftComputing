@@ -5,7 +5,7 @@ for i=1:nVectores
     vectores{i} = vector;
 end
 
-maxGeneraciones = 10000;
+maxGeneraciones = 1000000;
 sigma = 0.5;
 nFuncion = 1;
 [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,maxGeneraciones,nFuncion,sigma);

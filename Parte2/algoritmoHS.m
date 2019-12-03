@@ -3,10 +3,10 @@ function [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,gmax,nFuncion
     varianza = sigma;
     valoresPadres = evaluarAux(padres,nFuncion);
     minimoPadres = min(valoresPadres);
-    mejor = minimoPadres;
+    mejorFitness = minimoPadres;
     allFitness = [];
     for j=1:gmax
-        allFitness = [allFitness; mejor];
+        allFitness = [allFitness; mejorFitness];
         hijo = generarHijoRSR(padres,varianza);
         valorHijo = evaluarFuncion(hijo,nFuncion);
         
@@ -22,45 +22,21 @@ function [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,gmax,nFuncion
 
 end
 
-function [hijo] = generarHijo(padres,varianza)
-    hijo = [];
-    tam = size(padres{1});
-    tamColumnas = size(padres);
-    tamColumnas = tamColumnas(2);
-    for i = 1:tam(2)
-        prob = rand;
-        if(prob<0.8)
-            numAleatorioFila = randi(tamColumnas);
-            fila = padres{numAleatorioFila};
-            valor = fila(i);           
-        else
-            [maximo,minimo] = calcularLimites(padres);
-            valor = rand*(maximo-minimo)+minimo;
-        end
-        if(prob<0.3)
-            ruido = 0 + varianza*rand;
-            valor = valor + ruido;
-        end
-        hijo = [hijo,valor];
-    end 
-end
-
 function [hijo] = generarHijoRSR(padres,varianza)
     hijo = [];
     tam = size(padres{1});
     tamColumnas = size(padres);
     tamColumnas = tamColumnas(2);
     
-    [maximo,minimo] = calcularLimites(padres);
-    
     for i = 1:tam(2)
+        [maximo,minimo] = calcularLimites(padres,i);
         prob = rand;
         if(prob<0.8)
             numAleatorioFila = randi(tamColumnas);
             fila = padres{numAleatorioFila};
             valor = fila(i);           
         else
-            valor = rand*(maximo-minimo)+minimo;
+            valor = rand*(200)-100;
         end
         if(prob<0.3)
             ruido = 0 + varianza*rand;
@@ -71,7 +47,7 @@ function [hijo] = generarHijoRSR(padres,varianza)
     
     tamHijo = size(hijo);
     probCambio = rand;
-    if(probCambio<0.2)
+    if(probCambio<0.01)
         for i=1:randi(tamHijo(2))
             posicionAleatoria = randi(tamHijo(2));
             hijo(posicionAleatoria) = rand*(maximo-minimo)+minimo;
@@ -103,15 +79,16 @@ function [valores] = evaluarAux(padres,nFuncion)
     end
 end
 
-function [maximo,minimo] = calcularLimites(padres)
+function [maximo,minimo] = calcularLimites(padres,indice)
     tam = size(padres);
     tam = tam(2);
     padre1 = padres{1};
-    maximo = padre1(1);
-    minimo = padre1(1);
-    for i=1:tam
-        maximoLocal = max(padres{i});
-        minimoLocal = min(padres{i});
+    maximo = padre1(indice);
+    minimo = padre1(indice);
+    for i=2:tam
+        fila = padres{i};
+        maximoLocal = fila(indice);
+        minimoLocal = fila(indice);
         if(maximoLocal>maximo)
             maximo = maximoLocal;
         end
