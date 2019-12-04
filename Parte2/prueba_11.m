@@ -1,12 +1,9 @@
-vector = -100 + 200*rand(1,30);
+vector = -30 + 60*rand(1,30);
 maxGeneraciones = 10000;
-sigma = 0.5;
-[allFitness,iteracionMejor,solucion] = algoritmo11(vector,maxGeneraciones,1,sigma);
+sigma = 0.05;
+[allFitness,mejor,solucion] = algoritmo11(vector,maxGeneraciones,3,sigma);
 
 plot(allFitness);
 
 disp('Mejor fitness conseguido');
-disp(allFitness(iteracionMejor));
-
-disp('La solucion es');
-disp(solucion);
+disp(mejor);

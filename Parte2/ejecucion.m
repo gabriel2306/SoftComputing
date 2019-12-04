@@ -11,7 +11,7 @@ sigmaML = 5;
 maxGeneracionesML = 5000;
 
 sigmaHS = 5;
-maxGeneracionesHS = 5000;
+maxGeneracionesHS = 500000;
 
 % 1+1
 vector = limiteInferior + (limiteSuperior-limiteInferior)*rand(1,30);
