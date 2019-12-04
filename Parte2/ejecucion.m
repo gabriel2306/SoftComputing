@@ -10,11 +10,7 @@ maxGeneraciones11 = 10000;
 sigmaML = 0.05;
 maxGeneracionesML = 3000;
 
-<<<<<<< HEAD
-sigmaHS = 5;
-=======
 sigmaHS = 0.005;
->>>>>>> 04d74ac78d38e83f2265a4c2e861392493eb193a
 maxGeneracionesHS = 500000;
 
 % 1+1

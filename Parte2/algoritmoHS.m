@@ -7,11 +7,8 @@ function [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,gmax,nFuncion
     allFitness = [];
     for j=1:gmax
         allFitness = [allFitness; mejorFitness];%Guardamos el fitness del mejor padre
-<<<<<<< HEAD
+
         hijo = generarHijoRSR(padres,varianza,nFuncion);%Generamos nueva armonï¿½a
-=======
-        hijo = generarHijoRSR(padres,varianza,nFuncion);%Generamos nueva armonía
->>>>>>> 04d74ac78d38e83f2265a4c2e861392493eb193a
         valorHijo = evaluarFuncion(hijo, nFuncion);
         
         [valorPeorPadres, padre]= max(valoresPadres);
