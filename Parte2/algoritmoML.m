@@ -11,7 +11,7 @@ function [allFitness,mejorFitness,solucion] = algoritmoML(vectores,gmax,nFuncion
         padres = obtenerNuevosPadres(padres,nHijos,varianza,nFuncion,valoresPadres);
         
         valoresPadres = evaluarAux(padres,nFuncion);
-        [minimoPadres posicionMinimo] = min(valoresPadres); %Obtenemos el mejor fitness de los padres
+        [minimoPadres, posicionMinimo] = min(valoresPadres); %Obtenemos el mejor fitness de los padres
         mejorFitness = minimoPadres;
         solucion = padres{posicionMinimo}; %Mejor padre
     end
@@ -25,20 +25,7 @@ function [hijo] = generarHijo(padre,varianza,funcion)
 end
 
 function [hijo] = comprobarHijo(hijo,nFuncion)
-    if (nFuncion==1)
-        limiteInferior = -100;
-        limiteSuperior = 100;
-    end
-
-    if (nFuncion==2)
-        limiteInferior = -500;
-        limiteSuperior = 500;
-    end
-
-    if (nFuncion==3)
-        limiteInferior = -30;
-        limiteSuperior = 30;
-    end
+    [limiteInferior, limiteSuperior] = limitesFunciones(nFuncion);
     
     for i=1:30
         if(hijo(i)<limiteInferior)
@@ -50,28 +37,13 @@ function [hijo] = comprobarHijo(hijo,nFuncion)
     end    
 end
 
-%Genera resultado de función objetivo de un individuo
-function [eval] = evaluarFuncion(vector, nFuncion)
-    aux = 0;
-    switch nFuncion
-        case 1
-            aux = funcion1(vector);
-        case 2
-            aux = funcion2(vector);
-        case 3
-            aux = funcion3(vector);
-    end
-    
-    eval = aux;
-end
-
 %Evalua los padres o hijos
 function [valores] = evaluarAux(padres,nFuncion)
     valores = [];
     tam = size(padres);
     
     for i=1:tam(2)
-        valores = [valores,evaluarFuncion(padres{i},nFuncion)];
+        valores = [valores, evaluarFuncion(padres{i},nFuncion)];
     end
 end
 
@@ -88,7 +60,7 @@ function [padres] = obtenerNuevosPadres(padres,nHijos,varianza,nFuncion,valoresP
     for i = 1:nPadres(2)
         hijos = generarHijosAux(padres{i},nHijos,varianza,nFuncion); %Generamos hijo de un padre
         valoresHijos = evaluarAux(hijos,nFuncion); %Generamos los resultados de la función objetivo de los hijos
-        [valorHijoMinimo posicionHijoMinimo] = min(valoresHijos); %Valor minimo del hijo
+        [valorHijoMinimo, posicionHijoMinimo] = min(valoresHijos); %Valor minimo del hijo
         if(valorHijoMinimo<valoresPadres(i))%Si el mejor hijo es mejor que el padre lo sustituimos
             padres{i} = hijos{posicionHijoMinimo};
         end

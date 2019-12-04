@@ -1,41 +1,17 @@
 % Funcion a evaluar
-nFuncion = 3;
+nFuncion = 2;
 
-% Limites
-if (nFuncion==1)
-    limiteInferior = -100;
-    limiteSuperior = 100;
-end
-
-if (nFuncion==2)
-    limiteInferior = -500;
-    limiteSuperior = 500;
-end
-    
-if (nFuncion==3)
-    limiteInferior = -30;
-    limiteSuperior = 30;
-end
+[limiteInferior, limiteSuperior] = limitesFunciones(nFuncion);
 
 % Parametros
-<<<<<<< HEAD
-sigma11 = 4;
-maxGeneraciones11 = 10000;
+sigma11 = 5;
+maxGeneraciones11 = 5000;
 
-sigmaML = 4;
-maxGeneracionesML = 10000;
+sigmaML = 5;
+maxGeneracionesML = 5000;
 
-sigmaHS = 4;
-=======
-sigma11 = 0.05;
-maxGeneraciones11 = 10000;
-
-sigmaML = 0.01;
-maxGeneracionesML = 10000;
-
-sigmaHS = 0.01;
->>>>>>> af46c0c0793a5be72712b01e675652630d2d2fd7
-maxGeneracionesHS = 10000;
+sigmaHS = 5;
+maxGeneracionesHS = 5000;
 
 % 1+1
 vector = limiteInferior + (limiteSuperior-limiteInferior)*rand(1,30);

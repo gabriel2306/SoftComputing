@@ -1,6 +1,6 @@
 function [allFitness,fitness,hijoMejor] = algoritmo11(vector,gmax,nFuncion,sigma)
     padre = vector;
-    minimoActual = evaluarFuncion(padre,nFuncion);
+    minimoActual = evaluarFuncion(padre, nFuncion);
     
     allFitness = [];
     varianza = sigma;
@@ -27,20 +27,7 @@ function [hijo] = generarHijo(padre,varianza,funcion)
 end
 
 function [hijo] = comprobarHijo(hijo,nFuncion)
-    if (nFuncion==1)
-        limiteInferior = -100;
-        limiteSuperior = 100;
-    end
-
-    if (nFuncion==2)
-        limiteInferior = -500;
-        limiteSuperior = 500;
-    end
-
-    if (nFuncion==3)
-        limiteInferior = -30;
-        limiteSuperior = 30;
-    end
+    [limiteInferior, limiteSuperior] = limitesFunciones(nFuncion);
     
     for i=1:30
         if(hijo(i)<limiteInferior)
@@ -50,18 +37,4 @@ function [hijo] = comprobarHijo(hijo,nFuncion)
             hijo(i) = limiteSuperior;
         end        
     end    
-end
-%Generamos resultado de función objetivo del individuo
-function [eval] = evaluarFuncion(vector, nFuncion)
-    aux = 0;
-    switch nFuncion
-        case 1
-            aux = funcion1(vector);
-        case 2
-            aux = funcion2(vector);
-        case 3
-            aux = funcion3(vector);
-    end
-    
-    eval = aux;
 end
