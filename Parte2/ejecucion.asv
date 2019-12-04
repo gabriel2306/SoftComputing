@@ -5,16 +5,12 @@ nFuncion = 3;
 
 % Parametros
 sigma11 = 0.05;
-maxGeneraciones11 = 10000;
+maxGeneraciones11 = 5000;
 
 sigmaML = 0.05;
 maxGeneracionesML = 3000;
 
-<<<<<<< HEAD
-sigmaHS = 5;
-=======
 sigmaHS = 0.005;
->>>>>>> 04d74ac78d38e83f2265a4c2e861392493eb193a
 maxGeneracionesHS = 500000;
 
 % 1+1
@@ -36,7 +32,7 @@ for i=1:30
 end
 toc
 
-nVectores = 100;
+nVectores = 50;
 vectores = cell(1,nVectores);
 nHijos = 5;
 for i=1:nVectores
@@ -51,7 +47,7 @@ bestFitnessML = mejorFitness;
 allFitnessML = allFitness;
 solucionML = solucion;
 fitnessIteracionesML = [mejorFitness];
-for i=1:10
+for i=1:30
     [allFitness,mejorFitness,solucion] = algoritmoML(vectores,maxGeneracionesML,nFuncion,sigmaML,nHijos);
     fitnessIteracionesML = [fitnessIteracionesML mejorFitness];
     if (mejorFitness<bestFitnessML)

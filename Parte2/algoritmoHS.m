@@ -7,7 +7,11 @@ function [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,gmax,nFuncion
     allFitness = [];
     for j=1:gmax
         allFitness = [allFitness; mejorFitness];%Guardamos el fitness del mejor padre
+<<<<<<< HEAD
         hijo = generarHijoRSR(padres,varianza,nFuncion);%Generamos nueva armonï¿½a
+=======
+        hijo = generarHijoRSR(padres,varianza,nFuncion);%Generamos nueva armonía
+>>>>>>> 04d74ac78d38e83f2265a4c2e861392493eb193a
         valorHijo = evaluarFuncion(hijo, nFuncion);
         
         [valorPeorPadres, padre]= max(valoresPadres);
@@ -35,7 +39,7 @@ function [hijo] = generarHijoRSR(padres,varianza,nFuncion)
     for i = 1:tam(2)
         prob = rand;
         %Probabilidad HMCR para generar nota
-        if(prob<0.8)
+        if(prob<0.9)
             %Nota aleatoria de la misma columna de Harmony Memory
             numAleatorioFila = randi(tamColumnas);
             fila = padres{numAleatorioFila};
