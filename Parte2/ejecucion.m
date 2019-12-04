@@ -18,13 +18,13 @@ if (nFuncion==3)
 end
 
 % Parametros
-sigma11 = 5;
+sigma11 = 4;
 maxGeneraciones11 = 10000;
 
-sigmaML = 5;
+sigmaML = 4;
 maxGeneracionesML = 10000;
 
-sigmaHS = 5;
+sigmaHS = 4;
 maxGeneracionesHS = 10000;
 
 % 1+1
@@ -35,7 +35,7 @@ bestFitness11 = mejorFitness;
 allFitness11 = allFitness;
 solucion11 = solucion;
 fitnessIteraciones11 = [mejorFitness];
-for i=1:5
+for i=1:30
     [allFitness,mejorFitness,solucion] = algoritmo11(vector,maxGeneraciones11,nFuncion,sigma11);
     fitnessIteraciones11 = [fitnessIteraciones11 mejorFitness];
     if (mejorFitness<bestFitness11)
@@ -61,7 +61,7 @@ bestFitnessML = mejorFitness;
 allFitnessML = allFitness;
 solucionML = solucion;
 fitnessIteracionesML = [mejorFitness];
-for i=1:5
+for i=1:30
     [allFitness,mejorFitness,solucion] = algoritmoML(vectores,maxGeneracionesML,nFuncion,sigmaML,nHijos);
     fitnessIteracionesML = [fitnessIteracionesML mejorFitness];
     if (mejorFitness<bestFitnessML)
@@ -79,7 +79,7 @@ bestFitnessHS = mejorFitness;
 allFitnessHS = allFitness;
 solucionHS = solucion;
 fitnessIteracionesHS = [mejorFitness];
-for i=1:5
+for i=1:30
     [allFitness,mejorFitness,solucion] = algoritmoHS(vectores,maxGeneracionesHS,nFuncion,sigmaHS);
     fitnessIteracionesHS = [fitnessIteracionesHS mejorFitness];
     if (mejorFitness<bestFitnessHS)

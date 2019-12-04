@@ -44,7 +44,7 @@ function [hijo] = generarHijoRSR(padres,varianza)
             valor = minimo + (maximo-minimo)*rand;
         end
         %Probabilidad PAR
-        if(prob<0.3)
+        if(prob<0.2)
             %Mutamos nota
             ruido = 0 + varianza*rand;
             valor = valor + ruido;

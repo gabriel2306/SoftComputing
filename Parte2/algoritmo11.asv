@@ -23,10 +23,9 @@ end
 function [hijo] = generarHijo(padre,varianza,funcion)
     ruido = 0 + varianza*randn(1,30);
     hijo = padre + ruido;
-    hijo = comprobarHijo(hijo,funcion);
 end
 
-function [hijo] = comprobarHijo(hijo,nFuncion)
+function [hijo] = comprobarHijo(hijo,funcion)
     if (nFuncion==1)
         limiteInferior = -100;
         limiteSuperior = 100;
@@ -44,12 +43,13 @@ function [hijo] = comprobarHijo(hijo,nFuncion)
     
     for i=1:30
         if(hijo(i)<limiteInferior)
-            hijo(i) = limiteInferior;
-        end
-        if(hijo(i)>limiteSuperior)
-            hijo(i) = limiteSuperior;
-        end        
-    end    
+            hijo(i) = limiteInferior
+        if(hijo(i)>limiteInferior)
+            hijo(i) = limite
+        
+    end
+    
+    
 end
 %Generamos resultado de función objetivo del individuo
 function [eval] = evaluarFuncion(vector, nFuncion)
