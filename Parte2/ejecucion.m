@@ -1,5 +1,5 @@
 % Funcion a evaluar
-nFuncion = 2;
+nFuncion = 3;
 
 % Limites
 if (nFuncion==1)
@@ -18,6 +18,7 @@ if (nFuncion==3)
 end
 
 % Parametros
+<<<<<<< HEAD
 sigma11 = 4;
 maxGeneraciones11 = 10000;
 
@@ -25,6 +26,15 @@ sigmaML = 4;
 maxGeneracionesML = 10000;
 
 sigmaHS = 4;
+=======
+sigma11 = 0.05;
+maxGeneraciones11 = 10000;
+
+sigmaML = 0.01;
+maxGeneracionesML = 10000;
+
+sigmaHS = 0.01;
+>>>>>>> af46c0c0793a5be72712b01e675652630d2d2fd7
 maxGeneracionesHS = 10000;
 
 % 1+1
