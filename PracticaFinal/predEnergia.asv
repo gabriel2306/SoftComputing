@@ -13,18 +13,14 @@ maxIteraciones = 1000000;
 varianza = 0.41;
 
 errorMinimo = 10;
-
-for i=0:10
+for(i=0:10)
     [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,armoniaInicial,maxIteraciones,varianza);
-    if(mejorFitness<errorMinimo)
-        errorMinimo = mejorFitness;
-        solucionMejor = solucion;
-    end
+    enCalculadaTrain = calcularDemanda(varTrain, solucion);
+    if(mejorFitness<
 end
 disp(mejorFitness);
 
-enCalculadaTrain = calcularDemanda(varTrain, solucionMejor);
-enCalculadaTest = calcularDemanda(varTest, solucionMejor);
+enCalculadaTest = calcularDemanda(varTest, solucion);
 errorTest = funcionMinimizar(enTest, enCalculadaTest);
 disp(errorTest);
 

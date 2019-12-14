@@ -6,7 +6,7 @@ for i=1:nVectores
 end
 
 maxGeneraciones = 100000;
-sigma = 0.005;
+sigma = 0.05;
 nHijos = 5;
 nFuncion = 1;
 [allFitness,mejorFitness,solucion] = algoritmoML(vectores,maxGeneraciones,nFuncion,sigma,nHijos);

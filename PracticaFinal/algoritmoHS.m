@@ -74,7 +74,7 @@ function [hijo] = generarHijoRSR(padres,varianza)
         prob = rand;
         
         %Probabilidad HMCR para generar nota
-        if(prob<0.9)
+        if(prob<0.8)
             %Nota aleatoria de la misma columna de Harmony Memory
             numAleatorioFila = randi(tamColumnas);
             %Coger fila completa aleatoria
@@ -87,10 +87,16 @@ function [hijo] = generarHijoRSR(padres,varianza)
         end
         
         %Probabilidad PAR
-        if(prob<0.2)
+        if(prob<0.3)
             %Mutamos nota
             ruido = 0 + varianza*rand;
             valor = valor + ruido;
+            if(valor<minimo)
+                valor = minimo;
+            end
+            if(valor>maximo)
+                valor = maximo;
+            end
         end
         hijo = [hijo,valor];
     end 
