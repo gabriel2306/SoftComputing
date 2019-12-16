@@ -62,15 +62,10 @@ function [hijo] = generarHijoRSR(padres,varianza)
     tamColumnas = tamColumnas(2);
     
     for i = 1:tam
-        if (i==1)
-           maximo = 5;
-           minimo = -5;
-        else
-           maximo = 1;
-           minimo = -1;
-        end
+        %Obtener límites para los pesos aleatorios
+        [minimo,maximo] = limitesPesos(i);
         
-        %Obtener una probabilidad
+        %Obtener probabilidad
         prob = rand;
         
         %Probabilidad HMCR para generar nota
@@ -109,6 +104,10 @@ function [hijo] = generarHijoRSR(padres,varianza)
         %rango de su misma columna
         for i=1:randi(tam)
             posicionAleatoria = randi(tam);
+            
+            %Obtener límites para los pesos aleatorios
+            [minimo,maximo] = limitesPesos(posicionAleatoria);
+            
             hijo(posicionAleatoria) = rand*(maximo-minimo)+minimo;
         end
     end
