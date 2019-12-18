@@ -65,11 +65,11 @@ function [hijo] = generarHijoRSR(padres,varianza)
         %Obtener límites para los pesos aleatorios
         [minimo,maximo] = limitesPesos(i);
         
-        %Obtener probabilidad
-        prob = rand;
+        %Obtener probabilidad para HMCR
+        probHMCR = rand;
         
         %Probabilidad HMCR para generar nota
-        if(prob<0.8)
+        if(probHMCR<0.8)
             %Nota aleatoria de la misma columna de Harmony Memory
             numAleatorioFila = randi(tamColumnas);
             %Coger fila completa aleatoria
@@ -81,8 +81,10 @@ function [hijo] = generarHijoRSR(padres,varianza)
             valor = minimo + (maximo-minimo)*rand;
         end
         
-        %Probabilidad PAR
-        if(prob<0.3)
+        %Obtener probabilidad para PAR
+        probPAR = rand;
+        
+        if(probPAR<0.3)
             %Mutamos nota
             ruido = 0 + varianza*rand;
             valor = valor + ruido;
@@ -96,7 +98,7 @@ function [hijo] = generarHijoRSR(padres,varianza)
         hijo = [hijo,valor];
     end 
 
-    %Probabilidad RSR
+    %Obtener probabilidad para RSR
     probCambio = rand;
     
     if(probCambio<0.01)

@@ -6,7 +6,7 @@ datos = csvread('data.csv',1,0);
 [varTest, enTest] = separarDatosTest(datosNormalizados);
 
 nCaracteristicas = 6;
-nPadres = 500;
+nPadres = 10;
 armoniaInicial = crearArmoniaInicial(nCaracteristicas, nPadres);
 
 maxIteraciones = 10000;
