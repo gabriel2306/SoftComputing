@@ -14,7 +14,7 @@ varianza = 0.1;
 
 errorMinimo = 10;
 
-for i=0:1
+for i=1:3
     [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,armoniaInicial,maxIteraciones,varianza);
     
     if(mejorFitness<errorMinimo)
@@ -22,12 +22,12 @@ for i=0:1
         solucionMejor = solucion;
     end
 end
-disp(mejorFitness);
+disp(errorMinimo*factorNormalizado(1)^2);
 
 enCalculadaTrain = calcularDemanda(varTrain, solucionMejor);
 enCalculadaTest = calcularDemanda(varTest, solucionMejor);
 errorTest = funcionMinimizar(enTest, enCalculadaTest);
-disp(errorTest);
+disp(errorTest*factorNormalizado(1)^2);
 
 subplot(2,1,1)
 plot(1:13,enTrain.*factorNormalizado(1),'-o',1:13,enCalculadaTrain.*factorNormalizado(1),'-o');
