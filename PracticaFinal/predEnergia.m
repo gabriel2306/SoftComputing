@@ -9,17 +9,20 @@ annosTest = 1991:2:2015;
 [varTrain, enTrain] = separarDatosTrain(datosNormalizados);
 [varTest, enTest] = separarDatosTest(datosNormalizados);
 
-nCaracteristicas = 6;
-nPadres = 100;
-armoniaInicial = crearArmoniaInicial(nCaracteristicas, nPadres);
+% Linealizar Modelo (true/false)
+linealizar = false;
 
-maxIteraciones = 50000;
+nCaracteristicas = 6;
+nPadres = 10;
+armoniaInicial = crearArmoniaInicial(nCaracteristicas, nPadres, linealizar);
+
+maxIteraciones = 10000;
 varianza = 0.01;
 
 errorMinimo = 10;
 
-for i=1:10
-    [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,armoniaInicial,maxIteraciones,varianza);
+for i=1:3
+    [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,armoniaInicial,maxIteraciones,varianza,linealizar,nCaracteristicas);
     
     if(mejorFitness<errorMinimo)
         errorMinimo = mejorFitness;
@@ -27,8 +30,8 @@ for i=1:10
     end
 end
 disp(errorMinimo*factorNormalizadoEnergia^2);
-
 enCalculadaTrain = calcularDemanda(varTrain, solucionMejor);
+
 enCalculadaTest = calcularDemanda(varTest, solucionMejor);
 errorTest = funcionMinimizar(enTest, enCalculadaTest);
 disp(errorTest*factorNormalizadoEnergia^2);

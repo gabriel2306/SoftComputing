@@ -1,4 +1,4 @@
-function [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,padres,maxIteraciones,varianza)
+function [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,padres,maxIteraciones,varianza,linealizar,nCaracteristicas)
     %Calcular el error producido por todos los padres
     errorPadres = evaluarAux(padres,varTrain,enTrain);
     
@@ -20,6 +20,11 @@ function [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,padre
 
         %Generamos una nueva armonia
         hijo = generarHijoRSR(padres,varianza);
+        
+        % Los exponentes del modelo se ponene a 1
+        if linealizar
+           hijo = linealizarPesos(hijo,nCaracteristicas); 
+        end
 
         %Calculamos el error del hijo
         enCalculadaHijo = calcularDemanda(varTrain, hijo);
@@ -110,9 +115,6 @@ function [hijo] = generarHijoRSR(padres,varianza)
             valor = rand*(maximo-minimo)+minimo;
             hijo(posicionAleatoria) = valor;
         end
-    end
-    for i=8:13
-       hijo(i) = 1;
     end
 end
 

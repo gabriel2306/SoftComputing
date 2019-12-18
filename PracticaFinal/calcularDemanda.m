@@ -16,5 +16,6 @@ function demandaCalculada = cDemandaAux(varReales, varPredictivas)
         suma = suma + varPredictivas(i)*(varReales(i)^(varPredictivas(i+tam)));
     end
     
+    %La bia se encuentra en la primera posición del vector
     demandaCalculada = suma + varPredictivas(1);
 end
