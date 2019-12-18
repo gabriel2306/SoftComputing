@@ -20,7 +20,7 @@ function [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,padre
 
         %Generamos una nueva armonia
         hijo = generarHijoRSR(padres,varianza);
-        
+
         %Calculamos el error del hijo
         enCalculadaHijo = calcularDemanda(varTrain, hijo);
         errorHijo = funcionMinimizar(enTrain, enCalculadaHijo);
@@ -110,6 +110,9 @@ function [hijo] = generarHijoRSR(padres,varianza)
             valor = rand*(maximo-minimo)+minimo;
             hijo(posicionAleatoria) = valor;
         end
+    end
+    for i=8:13
+       hijo(i) = 1;
     end
 end
 

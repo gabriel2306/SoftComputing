@@ -10,15 +10,15 @@ annosTest = 1991:2:2015;
 [varTest, enTest] = separarDatosTest(datosNormalizados);
 
 nCaracteristicas = 6;
-nPadres = 10;
+nPadres = 100;
 armoniaInicial = crearArmoniaInicial(nCaracteristicas, nPadres);
 
-maxIteraciones = 10000;
-varianza = 0.1;
+maxIteraciones = 50000;
+varianza = 0.01;
 
 errorMinimo = 10;
 
-for i=1:3
+for i=1:10
     [allFitness,mejorFitness,solucion] = algoritmoHS(varTrain,enTrain,armoniaInicial,maxIteraciones,varianza);
     
     if(mejorFitness<errorMinimo)
