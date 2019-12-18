@@ -1,6 +1,6 @@
 datos = csvread('data.csv',1,0);
 
-[datosNormalizados factorNormalizado] = normalizarDatos(datos);
+[datosNormalizados, factorNormalizado] = normalizarDatos(datos);
 
 [varTrain, enTrain] = separarDatosTrain(datosNormalizados);
 [varTest, enTest] = separarDatosTest(datosNormalizados);
