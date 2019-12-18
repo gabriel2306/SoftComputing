@@ -88,12 +88,9 @@ function [hijo] = generarHijoRSR(padres,varianza)
             %Mutamos nota
             ruido = 0 + varianza*rand;
             valor = valor + ruido;
-            if(valor<minimo)
-                valor = minimo;
-            end
-            if(valor>maximo)
-                valor = maximo;
-            end
+            
+            %Comprobar que el valor no se sale de los límites del peso
+            valor = comprobarValor(valor, minimo, maximo);
         end
         hijo = [hijo,valor];
     end 
@@ -110,7 +107,8 @@ function [hijo] = generarHijoRSR(padres,varianza)
             %Obtener límites para los pesos aleatorios
             [minimo,maximo] = limitesPesos(posicionAleatoria);
             
-            hijo(posicionAleatoria) = rand*(maximo-minimo)+minimo;
+            valor = rand*(maximo-minimo)+minimo;
+            hijo(posicionAleatoria) = valor;
         end
     end
 end
