@@ -1,6 +1,7 @@
 datos = csvread('data.csv',1,0);
 
-[datosNormalizados, factorNormalizado] = normalizarDatos(datos);
+[datosNormalizados, factoresNormalizado] = normalizarDatos(datos);
+factorNormalizadoEnergia = factoresNormalizado(1);
 
 [varTrain, enTrain] = separarDatosTrain(datosNormalizados);
 [varTest, enTest] = separarDatosTest(datosNormalizados);
@@ -22,19 +23,19 @@ for i=1:3
         solucionMejor = solucion;
     end
 end
-disp(errorMinimo*factorNormalizado(1)^2);
+disp(errorMinimo*factorNormalizadoEnergia^2);
 
 enCalculadaTrain = calcularDemanda(varTrain, solucionMejor);
 enCalculadaTest = calcularDemanda(varTest, solucionMejor);
 errorTest = funcionMinimizar(enTest, enCalculadaTest);
-disp(errorTest*factorNormalizado(1)^2);
+disp(errorTest*factorNormalizadoEnergia^2);
 
 subplot(2,1,1)
-plot(1:13,enTrain.*factorNormalizado(1),'-o',1:13,enCalculadaTrain.*factorNormalizado(1),'-o');
+plot(1:13,enTrain.*factorNormalizadoEnergia,'-+',1:13,enCalculadaTrain.*factorNormalizadoEnergia,'-o');
 title('TRAIN');
 legend('Real','Calculada');
 
 subplot(2,1,2)
-plot(1:13,enTest.*factorNormalizado(1),'-o',1:13,enCalculadaTest.*factorNormalizado(1),'-o');
+plot(1:13,enTest.*factorNormalizadoEnergia,'-+',1:13,enCalculadaTest.*factorNormalizadoEnergia,'-o');
 title('TEST');
 legend('Real','Calculada');
