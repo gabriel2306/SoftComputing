@@ -3,6 +3,9 @@ datos = csvread('data.csv',1,0);
 [datosNormalizados, factoresNormalizado] = normalizarDatos(datos);
 factorNormalizadoEnergia = factoresNormalizado(1);
 
+annosTrain = 1992:2:2016;
+annosTest = 1991:2:2015;
+
 [varTrain, enTrain] = separarDatosTrain(datosNormalizados);
 [varTest, enTest] = separarDatosTest(datosNormalizados);
 
@@ -31,11 +34,11 @@ errorTest = funcionMinimizar(enTest, enCalculadaTest);
 disp(errorTest*factorNormalizadoEnergia^2);
 
 subplot(2,1,1)
-plot(1:13,enTrain.*factorNormalizadoEnergia,'-+',1:13,enCalculadaTrain.*factorNormalizadoEnergia,'-o');
+plot(annosTrain,enTrain.*factorNormalizadoEnergia,'-+',annosTrain,enCalculadaTrain.*factorNormalizadoEnergia,'-o');
 title('TRAIN');
 legend('Real','Calculada');
 
 subplot(2,1,2)
-plot(1:13,enTest.*factorNormalizadoEnergia,'-+',1:13,enCalculadaTest.*factorNormalizadoEnergia,'-o');
+plot(annosTest,enTest.*factorNormalizadoEnergia,'-+',annosTest,enCalculadaTest.*factorNormalizadoEnergia,'-o');
 title('TEST');
 legend('Real','Calculada');

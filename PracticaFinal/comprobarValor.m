@@ -4,7 +4,9 @@ function valor = comprobarValor(valorInicial, minimo, maximo)
     else 
         if(valorInicial>maximo)
             valor = maximo;
-        end
+        else 
+            valor = valorInicial;
+        end    
     end
 end
 
