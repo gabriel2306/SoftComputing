@@ -3,7 +3,7 @@ function armoniaInicial = crearArmoniaInicial(nCaracteristicas, nPadres, lineali
     for i=1:nPadres
         vector = -1 + 2*rand(1,nCaracteristicas*2);
         
-        % Los exponentes del modelo se ponene a 1
+        % Los exponentes del modelo se ponen a 1
         if linealizar
            vector = linealizarPesos(vector,nCaracteristicas); 
         end
