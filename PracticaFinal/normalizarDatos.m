@@ -4,6 +4,7 @@ function [datosNormalizados, factor] = normalizarDatos(datos)
     resultado = datos(:,1);
     
     factores = [];
+    %Normalizamos cada columna
     for i=2:tam(2)
         columna = datos(:,i);
         maximo = max(columna);
